@@ -1,0 +1,176 @@
+﻿.estructura {
+    font-weight: bold;
+    color: darkcyan;
+    margin-inline: auto;
+}
+
+.wrapper
+{
+    display:flex;
+    max-width: 500px;
+    height: 100vh;
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+    width:100%;
+    margin-inline: auto;
+    min-height:100%;
+}
+
+.formcontent {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align:center;
+}
+
+.bienvenida {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.h2 {
+    font-weight: bolder;
+    color: darkcyan;
+}
+
+.h1 {
+    font-weight: 500;
+    font-size: large;
+    color: darkcyan;
+}
+
+.Input{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 10px;
+}
+
+.form-inputs{
+    padding: 8px;
+    border-color: darkcyan;
+    border-radius: 6px;
+    flex: 1;
+}
+
+.session-button{
+    margin-top: 20px;
+    background: darkcyan;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    justify-content:space-between;
+    align-content: space-between;
+    gap: 10px;
+}
+
+.label-input{
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.register{
+    text-align: center;
+}
+
+/*----------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------*/
+/*
+.card{
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+}
+
+.user{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1;
+    margin-right: 25px;
+    background-color: aquamarine;
+}
+
+.user-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.min-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.mid-container{
+    display: flex;
+    gap: 25px
+}
+*/
+
+.card {
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+}
+
+.user {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    margin-right: 25px;
+    background-color: aquamarine;
+}
+
+.user-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mid-container {
+    display: flex;
+    gap: 25px;
+}
+
+@media screen and (max-width: 700px) {
+    .card {
+        flex-direction: column;
+        align-items: center;
+    }
+    .user {
+        margin-right: 0px;
+    }
+    .session-button{
+        margin-top: 10px;
+    }
+    .wrapper {
+        max-width: 500px;
+    }
+}
