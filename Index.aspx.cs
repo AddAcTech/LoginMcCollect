@@ -194,7 +194,7 @@ namespace Login_InfoToolsSV
             lblPromedio.Text = userInfo.Promedio.ToString("0.00");
             lblNacimiento.Text = userInfo.Nacimiento;
 
-            if (userInfo.Cita.ToString() != "01/01/1900")
+            if (userInfo.Cita.ToString() != "1900-01-01")
             {
                 lblCita.Text = userInfo.Cita.ToString();
                 GenerarCita.Visible = false;
@@ -251,7 +251,7 @@ namespace Login_InfoToolsSV
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                string citaGenerada = dr.GetDateTime(dr.GetOrdinal("Dia")).ToShortDateString();
+                string citaGenerada = dr.GetDateTime(dr.GetOrdinal("Dia")).ToString("yyyy-mm-dd");
                 lblCita.Text = "Su cita se generó correctamente para el día " + citaGenerada;
                 GenerarCita.Visible = false;
                 GenerarPdf.Visible = true;

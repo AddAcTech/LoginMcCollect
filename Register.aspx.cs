@@ -19,17 +19,20 @@ namespace Login_InfoToolsSV
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //NoAdmin noAdmin = new NoAdmin();
-            //if (!noAdmin.IsUserLoggedIn(Session))
-            //{
-            //    noAdmin.RedirectToLoginPage();
-            //}
+            NoAdmin noAdmin = new NoAdmin();
+            dynamic usuario = Session["usuarioLogueado"];
+            if (usuario == null || !usuario.TipoUsuario)
+            {
+                noAdmin.RedirectToLoginPage();
+            }
         }
 
         string patron = "Hash";
 
+
         protected void BtnRegistrar_Click(object sender, EventArgs e)
         {
+            void LimpiarErrores(){
             lblErrorUsuario.Text = "";
             lblErrorPassword.Text = "";
             lblErrorPasswordConf.Text = "";
@@ -38,6 +41,20 @@ namespace Login_InfoToolsSV
             lblErrorNacimiento.Text = "";
             lblErrorCp.Text = "";
             lblErrorPromedio.Text = "";
+            }
+            LimpiarErrores();
+
+            void LimpiarCampos()
+            {
+                tbUsuario.Text = "";
+                tbPassword.Text = "";
+                tbConfirmarPassword.Text = "";
+                tbNombre.Text = "";
+                tbDireccion.Text = "";
+                tbCp.Text = "";
+                tbPromedio.Text = "";
+                tbNacimiento.Text = "";
+            }
 
             bool hayErrores = false;
 
@@ -107,7 +124,9 @@ namespace Login_InfoToolsSV
                 // Realizar el registro
                 if (RegistrarUsuario(tbUsuario.Text, tbPassword.Text, patron, tbNombre.Text, tbDireccion.Text, tbCp.Text, tbPromedio.Text, tbNacimiento.Text))
                 {
-                    Response.Redirect("Login_InfoToolsSV.aspx");
+                    //Response.Redirect("Login_InfoToolsSV.aspx");
+                    LimpiarCampos();
+                    lblAlta.Text = "Usuario registrado correctamente";
                 }
                 else
                 {
@@ -252,7 +271,11 @@ namespace Login_InfoToolsSV
     {
         public bool IsUserLoggedIn(System.Web.SessionState.HttpSessionState session)
         {
-            return session["usuariologueado"] != null && session["datosUsuario"] != null;
+            return session["usuariologueado"] != null;
+        }
+        public void RedirectToRegisterPage()
+        {
+            System.Web.HttpContext.Current.Response.Redirect("Register.aspx");
         }
         public void RedirectToLoginPage()
         {

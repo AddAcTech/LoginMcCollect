@@ -87,6 +87,7 @@
                     </div>
 
                     <div class="row">
+                        <asp:Label runat="server" CssClass="alert-succes" ID="lblAlta"></asp:Label>
                         <asp:Label runat="server" CssClass="alert-danger" ID="lblError"></asp:Label>
                     </div>
 

@@ -258,6 +258,15 @@ namespace Login_InfoToolsSV
         protected global::System.Web.UI.WebControls.Label lblErrorNacimiento;
 
         /// <summary>
+        /// Control lblAlta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAlta;
+
+        /// <summary>
         /// Control lblError.
         /// </summary>
         /// <remarks>
