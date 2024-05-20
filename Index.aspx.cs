@@ -62,7 +62,8 @@ namespace Login_InfoToolsSV
 
         private void ActualizarSesionConRutaComprobante(string usuario)
         {
-            string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            string conectar = DB.Conectando();
+            //string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
             using (SqlConnection sqlConectar = new SqlConnection(conectar))
             {
                 sqlConectar.Open();
@@ -121,27 +122,45 @@ namespace Login_InfoToolsSV
             PdfWriter.GetInstance(comprobante, new FileStream(ruta, FileMode.Create));
             comprobante.Open();
 
-            foreach (var property in userInfo.GetType().GetProperties())
-            {
-                string propertyName = property.Name;
-                object propertyValue = property.GetValue(userInfo, null);
+                // Crear una tabla con 2 columnas
+                PdfPTable table = new PdfPTable(2);
+                table.WidthPercentage = 100; // Ancho de la tabla en porcentaje
 
-                if (propertyName != "Ruta")
+                foreach (var property in userInfo.GetType().GetProperties())
                 {
-                    if (propertyName == "Promedio")
-                    {
-                        double promedioValue = (double)propertyValue;
-                        propertyValue = promedioValue.ToString("0.00");
-                        comprobante.Add(new Paragraph(propertyName + ": " + propertyValue));
-                    }
-                    else
-                    {
-                        comprobante.Add(new Paragraph(propertyName + ": " + propertyValue));
-                    }
-                }
-            }
+                    string propertyName = property.Name;
+                    object propertyValue = property.GetValue(userInfo, null);
 
-            comprobante.Close();
+                    if (propertyName != "Ruta" && propertyName != "UserId")
+                    {
+
+                        if (propertyName == "Direccion")
+                            {
+                                PdfPCell cellName = new PdfPCell(new Phrase("Dirección"));
+                                PdfPCell cellValue = new PdfPCell(new Phrase(propertyValue.ToString()));
+                                table.AddCell(cellName);
+                                table.AddCell(cellValue);
+                            }
+                        else if (propertyName == "Cp")
+                            {
+                                PdfPCell cellName = new PdfPCell(new Phrase("Código postal"));
+                                PdfPCell cellValue = new PdfPCell(new Phrase(propertyValue.ToString()));
+                                table.AddCell(cellName);
+                                table.AddCell(cellValue);
+                            }
+                        else {                            
+                                PdfPCell cellName = new PdfPCell(new Phrase(propertyName));
+                                PdfPCell cellValue = new PdfPCell(new Phrase(propertyValue.ToString()));
+                                table.AddCell(cellName);
+                                table.AddCell(cellValue);
+                            }
+                    }
+
+                }
+
+                comprobante.Add(table);
+
+                comprobante.Close();
 
             ConsultarProcedimientoAlmacenado(userId, ruta);
 
@@ -168,7 +187,8 @@ namespace Login_InfoToolsSV
 
         private void ConsultarProcedimientoAlmacenado(int userId, string rutaArchivoPDF)
         {
-            string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            string conectar = DB.Conectando();
+            //string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
             using (SqlConnection sqlConectar = new SqlConnection(conectar))
             {
                 sqlConectar.Open();
@@ -238,7 +258,8 @@ namespace Login_InfoToolsSV
     {
         public void GenerateAppointment(dynamic userInfo, Label lblCita, Button GenerarCita, Button GenerarPdf)
         {
-            string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            string conectar = DB.Conectando();
+            //string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
             SqlConnection sqlConectar = new SqlConnection(conectar);
 
             sqlConectar.Open();

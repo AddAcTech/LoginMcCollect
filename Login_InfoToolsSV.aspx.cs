@@ -3,13 +3,21 @@ using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-
+    
 namespace Login_InfoToolsSV
 {
     public partial class Login_InfoToolsSV : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Verificar si hay un mensaje de error en la URL
+                if (!string.IsNullOrEmpty(Request.QueryString["error"]))
+                {
+                    lblError.Text = Request.QueryString["error"];
+                }
+            }
         }
 
         string patron = "Hash";
@@ -28,7 +36,7 @@ namespace Login_InfoToolsSV
                 return;
             }
 
-            string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            string conectar = DB.Conectando();
             SqlConnection sqlConectar = new SqlConnection(conectar);
 
             try
@@ -54,11 +62,18 @@ namespace Login_InfoToolsSV
                             {
                                 Response.Redirect("Register.aspx");
                             }
-
                         }
+                        //else
+                        //{
+                        //    System.Diagnostics.Debug.WriteLine("DEBUGUEANDO ANTES DEL ERROR");
+                        //    lblError.Text = "Usuario o Contraseña invalidos";
+                        //    System.Diagnostics.Debug.WriteLine("DEBUGUEANDO DESPUES DEL ERROR");
+                        //}
                         else
                         {
-                            lblError.Text = "Usuario o Contraseña invalidos";
+                            // Muestra un mensaje de error indicando credenciales inválidas
+                            string errorMessage = "Usuario o contraseña inválidos";
+                            Response.Redirect($"Login_InfoToolsSV.aspx?error={errorMessage}");
                         }
                     }
                 }

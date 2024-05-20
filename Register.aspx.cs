@@ -142,7 +142,8 @@ namespace Login_InfoToolsSV
         // Método para conectar y registrar usuario
         private bool RegistrarUsuario(string usuario, string contrasenia, string patron, string nombre, string direccion, string cp, string promedio, string nacimiento)
         {
-            string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            string conectar = DB.Conectando();
+            //string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
             using (SqlConnection sqlConectar = new SqlConnection(conectar))
             {
                 SqlCommand cmd = new SqlCommand("UserRegister", sqlConectar)

@@ -23,9 +23,9 @@
                     </div>
                     <div class="Input">
 <%--                        <asp:Label ID="lblUsuario" runat="server" Text="Usuario:"></asp:Label>--%>
-                        <asp:TextBox ID="tbUsuario" CssClass="form-inputs" runat="server" placeholder="Correo Electronico" ></asp:TextBox>
+                        <asp:TextBox ID="tbUsuario" CssClass="form-inputs" runat="server" placeholder="Ingrese correo electronico" ></asp:TextBox>
 <%--                        <asp:Label ID="lblPassword" runat="server" Text="Password:"></asp:Label>--%>
-                        <asp:TextBox ID="tbPassword" CssClass="form-inputs" TextMode="Password" runat="server" placeholder="Contraseña"></asp:TextBox>
+                        <asp:TextBox ID="tbPassword" CssClass="form-inputs" TextMode="Password" runat="server" placeholder="Ingrese contraseña"></asp:TextBox>
                     </div>
                     <div class="row">
                         <asp:Label runat="server" CssClass="alert-danger mt-2" ID="lblError"></asp:Label>
